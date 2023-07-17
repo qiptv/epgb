@@ -21,11 +21,14 @@ jobs:
       - name: Run mkepg.sh
         run: |
           bash mkepg.sh > epgm.xml
+
+      - name: Archive epgm.xml
+        run: gzip -f epgm.xml
           
       - name: Commit and push changes
         run: |
           git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add epgm.xml
-          git commit -m "Convert JSON to XMLTV"
+          git config user.email your-email@example.com
+          git add epgm.xml.gz
+          git commit -m "Convert JSON to XMLTV and archive"
           git push
