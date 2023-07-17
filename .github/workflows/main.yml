@@ -21,3 +21,11 @@ jobs:
       - name: Run mkepg.sh
         run: |
           bash mkepg.sh > epgm.xml
+          
+      - name: Commit and push changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add epgm.xml
+          git commit -m "Convert JSON to XMLTV"
+          git push
